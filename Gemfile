@@ -44,8 +44,12 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara', '~> 3.23'
+  gem 'pry'
   gem 'rb-readline'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 group :development do
@@ -59,6 +63,7 @@ group :development do
   gem 'spring'
 
   gem 'letter_opener_web'
+  gem 'pry'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
 end
@@ -68,4 +73,5 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'nokogiri', '1.12.5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

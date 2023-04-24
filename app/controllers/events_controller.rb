@@ -29,11 +29,11 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
+    @event.only_woman = params[:event][:only_woman] == '1' ? '女性限定' : nil
     if @event.save
       User.all.find_each do |user|
         NotificationFacade.created_event(@event, user)
       end
-
       redirect_to event_path(@event)
     else
       render :new
@@ -50,6 +50,7 @@ class EventsController < ApplicationController
 
   def update
     @event = current_user.events.find(params[:id])
+    @event.only_woman = params[:only_woman] == '1'
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
@@ -60,6 +61,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :content, :held_at, :prefecture_id, :thumbnail)
+    params.require(:event).permit(:title, :content, :held_at, :prefecture_id, :thumbnail, :only_woman)
   end
 end
