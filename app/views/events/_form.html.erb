@@ -17,9 +17,9 @@
     <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, class: 'form-select' %>
   </div>
   <div class="mb-3">
-    <% if current_user.gender == 'woman' %>
+    <% if current_user.woman?%>
       <%= f.label :only_woman%>
-      <%= f.check_box :only_woman, { checked: @event.only_woman == "true" } %>
+      <%= f.check_box :only_woman%>
     <% end %>
   </div>
   
